@@ -1,4 +1,4 @@
 /* after changing this file run 'npm run webpack:build' */
 @import '../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-@import '../../../../../node_modules/bootswatch/dist/sketchy/bootstrap.css';
+@import '../../../../../node_modules/bootswatch/dist/simplex/bootstrap.css';
