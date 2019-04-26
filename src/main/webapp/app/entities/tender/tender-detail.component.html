@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tender">
+            <h2><span>{{tender.title}}</span></h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{tender.description}}</span>
+                </dd>
+                <dt><span>Item Info</span></dt>
+                <dd>
+                    <div *ngIf="tender.itemInfo">
+                        <a (click)="openFile(tender.itemInfoContentType, tender.itemInfo)">open</a>
+                        {{tender.itemInfoContentType}}, {{byteSize(tender.itemInfo)}}
+                    </div>
+                </dd>
+                <dt><span>Suppliers</span></dt>
+                <dd>
+                    <span>------------</span>
+                    <div *ngIf="suppliers">
+                            <dl *ngFor="let supplier of suppliers | custpipe: tender.id" class="row-md jh-entity-details">
+                                <dt><a [routerLink]="['/supplier', supplier.id, 'view' ]">
+                                    <span>{{supplier.name}}</span></a>
+                                </dt>
+                                <dd>
+                                    <span>{{supplier.company}}</span>
+                                </dd>
+                            </dl>
+                    </div>
+                </dd>
+            </dl>
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                    [routerLink]="['/tender', tender.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
