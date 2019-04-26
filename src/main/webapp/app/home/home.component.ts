@@ -36,8 +36,7 @@ export class HomeComponent implements OnInit {
         protected activatedRoute: ActivatedRoute,
         protected dataUtils: JhiDataUtils,
         protected router: Router
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.accountService.identity().then((account: Account) => {
@@ -67,8 +66,8 @@ export class HomeComponent implements OnInit {
         this.tenderService
             .query()
             .pipe(
-                filter((res: HttpResponse<ITender[]>)=>res.ok),
-                map((res: HttpResponse<ITender[]>)=>res.body)
+                filter((res: HttpResponse<ITender[]>) => res.ok),
+                map((res: HttpResponse<ITender[]>) => res.body)
             )
             .subscribe(
                 (res: ITender[]) => {
