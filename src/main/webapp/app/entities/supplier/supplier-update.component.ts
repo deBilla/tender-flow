@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { ISupplier } from 'app/shared/model/supplier.model';
 import { SupplierService } from './supplier.service';
-import { IUser, UserService } from 'app/core';
+import { IUser, UserService, AccountService } from 'app/core';
 import { ITender } from 'app/shared/model/tender.model';
 import { TenderService } from 'app/entities/tender';
 
@@ -17,12 +17,13 @@ import { TenderService } from 'app/entities/tender';
 export class SupplierUpdateComponent implements OnInit {
     supplier: ISupplier;
     isSaving: boolean;
-
+    account: Account;
     users: IUser[];
 
     tenders: ITender[];
 
     constructor(
+        private accountService: AccountService,
         protected dataUtils: JhiDataUtils,
         protected jhiAlertService: JhiAlertService,
         protected supplierService: SupplierService,
@@ -35,6 +36,9 @@ export class SupplierUpdateComponent implements OnInit {
         this.isSaving = false;
         this.activatedRoute.data.subscribe(({ supplier }) => {
             this.supplier = supplier;
+        });
+        this.accountService.identity().then((account: Account) => {
+            this.account = account;
         });
         this.userService
             .query()

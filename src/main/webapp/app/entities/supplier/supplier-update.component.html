@@ -42,8 +42,9 @@
                     <label class="form-control-label" for="field_login">Login</label>
                     <select class="form-control" id="field_login" name="login" [(ngModel)]="supplier.login" >
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === supplier.login?.id ? supplier.login : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
-                        </select>
+                        <!----<option [ngValue]="userOption.id === supplier.login?.id ? supplier.login : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
+                        --><option [ngValue]="account.id === supplier.login?.id ? supplier.login : account">{{account.login}}</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" for="field_supplierResponse">Supplier Response</label>

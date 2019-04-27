@@ -22,12 +22,12 @@
                 </dd>
                 <dt><span>Login</span></dt>
                 <dd>
-                    {{supplier.login?.id}}
+                    {{supplier.login?.login}}
                 </dd>
                 <dt><span>Supplier Response</span></dt>
                 <dd>
                     <div *ngIf="supplier.supplierResponse">
-                        <a [routerLink]="['/tender', supplier.supplierResponse?.id, 'view']">{{supplier.supplierResponse?.id}}</a>
+                        <a [routerLink]="['/tender', supplier.supplierResponse?.id, 'view']">{{supplier.supplierResponse?.title}}</a>
                     </div>
                 </dd>
             </dl>
@@ -38,7 +38,7 @@
                 <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
             </button>
 
-            <button type="button"
+            <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
                     [routerLink]="['/supplier', supplier.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
